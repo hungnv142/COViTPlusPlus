@@ -1,6 +1,6 @@
-### Name: Nguyen, Viet Hung
-### Empl. ID: 234038
-### Empl. Email: hungnv142@viettel.com.vn
+### Employee Name:	Nguyen, Viet Hung
+### Employee ID:	234038
+### Employee Email:	hungnv142@viettel.com.vn
 
 <h2 align="center"> Find optimal model configuration for COVIDx8A dataset by Multi-objective Optmization approach </h2>
 
