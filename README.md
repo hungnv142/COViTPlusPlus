@@ -1,3 +1,7 @@
+### Name: Nguyen, Viet Hung
+### Empl. ID: 234038
+### Empl. Email: hungnv142@viettel.com.vn
+
 <h2 align="center"> Find optimal model configuration for COVIDx8A dataset by Multi-objective Optmization approach </h2>
 
 **Abstract.** This work implements One-shot Neural Architecture Search (NAS) to search the best configuration of Pyramid Vision Transformer (PVT) model for COVIDx8A dataset. Specifically, our objective is to find a model which should satisfy the resource constraints: a number of parameters, FLOPs (G) while also guaranteeing performance metrics: accuracy on test set and COVID-19 sensitivity. In order to tackle these challenges, we construct the large search space covering the changeable dimensions of Multi-head Attention vectors (*Q-K-V*); changeable pooling dimensions to perform Linear Spatial Reduction Attention; MLP ratios and amount of Transformer Encoders of each Stage. We initially train the supernet (the model can cover all scenarios from the search spacce) by Knowledge Distillation stragedy with the help of [an example model](https://github.com/hoangtv2000/COViT#the-exp5-model). Benefitting the **weight-entanglement training stragedy** of Vision Transformers, the well-trained supernet can allow a thousand of its subnets to be well-trained without having to train from scratch. Employing the **One-shot NAS searching technique**, our best subnet achieves 88.54% top-1 accuracy and 90.65% sensitivity on COVIDx8A dataset, with 3.16 M parameters and 0.29 GFLOPs in the retraining phase.
