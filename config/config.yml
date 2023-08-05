@@ -1,0 +1,66 @@
+config:
+  cuda: True # use nvidia gpu
+  cwd: /content/drive/MyDrive/COViT++ # working directory
+
+  log_interval: 500 # Print statistics every n samples.
+
+  epochs: 30
+  seed: 4848 # randomness seed
+  gpu: 0 # id of gpu
+  epoch_patience: 5 # Patience for early stopping
+
+  mode: retrain  # super, retrain : evolution and retrain
+  teacher_model: True
+
+  resume_training: True
+  resume_training_dir: /content/drive/MyDrive/COViT++/output_dir/supermodel_checkpoint.pth
+
+  validation: False
+  preprocess_type: torchio
+
+
+
+  dataloader:
+    train:
+      batch_size: 16 # batch size
+      shuffle: True # shuffle samples after every epoch
+      num_workers: 4 # number of thread for dataloader
+    test:
+      batch_size: 32 # batch size
+      shuffle: False # shuffle samples after every epoch
+      num_workers: 4
+
+
+
+  model_PVT_V2:
+    name: PVT_V2 # model name
+    optimizer: # optimizer configuration
+      type: AdamW  # optimizer type, choose: AdamW SAM_SGD SGD
+      lr: 3e-4 # learning rate
+      weight_decay: 0.000001 # weight decay
+    scheduler: # learning rate scheduler
+      type: ReduceLRonPlateau # type of scheduler
+      scheduler_factor: 0.5 # learning rate change ratio
+      scheduler_patience: 2 # patience for some epochs
+      scheduler_min_lr: 5e-6 # minimum learning rate value
+      scheduler_verbose: True # print if learning rate is changed
+
+
+  dataset:
+    input_data: /content/drive/MyDrive/COViT++/data/
+    img_folder: /content/drive/MyDrive/COViT++/data/all_images/
+    name: COVIDXR_dataset
+    type: multi_target
+    num_classes: 3
+    class_dict: {'pneumonia': 0, 'normal': 1, 'covid-19': 2}
+
+    img_size: [256, 256] # image dimension
+
+    # Choose type of image augmentation;
+    # we provie 3 types of augmentation: base; autoaug; torchio
+    train:
+      augmentation: True # do augmentation
+    val:
+      augmentation: False
+    test:
+      augmentation: False

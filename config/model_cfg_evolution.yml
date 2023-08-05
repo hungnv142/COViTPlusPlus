@@ -1,0 +1,56 @@
+input_size: [256, 256]
+drop_rate: 0.0
+attn_drop_rate: 0.0
+num_classes: 3
+
+max_epochs : 100
+
+select_num : 10
+population_num : 40
+
+m_prob : 0.2
+s_prob : 0.4
+
+crossover_num : 20
+mutation_num : 20
+
+param_limits : 9.99
+min_param_limits : 2.00
+
+load_checkpoint: True
+resume_dir: /content/drive/MyDrive/COViT++/evo_output_dir/[8, 8, 4, 4]-checkpoint-24.pth
+evo_output_dir: /content/drive/MyDrive/COViT++/evo_output_dir/
+
+
+SUPERNET:
+  EMBED_DIMS: [32, 64, 160, 256]
+  DEPTHS: [3, 4, 12, 2] 
+  SAMPLE_POOLING_DIM: 15 
+  MLP_RATIOS: [8, 8, 8, 4]   
+#  MLP_RATIOS: [8, 8, 4, 4]   
+
+RETRAIN:
+  EMBED_DIMS: [16, 32, 80, 128]
+  SAMPLE_POOLING_DIM: 15
+  DEPTHS: [3, 2, 6, 2]
+
+
+SEARCH_SPACE:
+  EMBED_DIMS:
+    - [8, 16, 40, 64]
+    - [16, 32, 80, 128]
+    - [24, 48, 120, 192]
+    - [32, 64, 160, 256]
+
+  SAMPLE_POOLING_DIM:
+    - 7
+    - 15
+    - 31
+
+  DEPTHS:
+    - [2, 2, 2, 2]
+    - [2, 2, 4, 2]
+    - [2, 3, 6, 2]
+    - [2, 4, 8, 2]
+    - [3, 4, 12, 2]
+
